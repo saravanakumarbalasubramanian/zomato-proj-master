@@ -13,4 +13,4 @@ zomato.use(cors());
 
 zomato.get("/" , (req, res) => res.json({message: "Setup Success"}));
 
-zomato.listen(5000, () => console.log("Server is Running 🚀")); 
+zomato.listen(5, () => console.log("Server is Running 🚀")); 

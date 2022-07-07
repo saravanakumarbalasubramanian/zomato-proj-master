@@ -10,7 +10,7 @@ const Router = express.Router();
 
 /*
 Route    /signup
-Des      Signup with Email and Password
+Des      Register the user
 Params   none
 Access   Public
 Method   POST
@@ -30,5 +30,28 @@ Router.post("/signup", async (req, res) => {
     return res.status(500).json({ error: error.message });
   }
 });
+
+
+/*
+Route    /signin
+Des      Signin with Email and Password
+Params   none
+Access   Public
+Method   POST
+*/
+Router.post("/signin", async (req, res) => {
+  try {
+
+  const user =  await UserModel.findByEmailAndPassword(req.body.credentials);
+
+   
+    const token = user.generateJwtToken();
+
+    return res.status(200).json({ token, status: "success" });
+  } catch (error) {
+    return res.status(500).json({ error: error.message });
+  }
+});
+
 
 export default Router;

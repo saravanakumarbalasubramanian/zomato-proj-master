@@ -12,6 +12,13 @@ import Auth from "./API/Auth"
 // DataBase Connection 
 import ConnectDB from "./database/connection";
 
+// import passport
+import passport from "passport";
+
+// config
+
+import goooleAuthonfig from "./config/google.config";
+
 
 const zomato = express();
 
@@ -20,6 +27,9 @@ zomato.use(express.json());
 zomato.use(express.urlencoded({extended:false}));
 zomato.use(helmet());
 zomato.use(cors());
+
+// passport Integration
+goooleAuthonfig(passport);
 
 // Application Routes
 zomato.use("/auth", Auth);

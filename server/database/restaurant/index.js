@@ -17,15 +17,15 @@ const RestaurantSchema = new mongoose.Schema({
     ref: "Images",
   },
   menu: {
-    type: mongoose.Types, ObjectId,
+    type: mongoose.Types.ObjectId,
     ref: "Menu",
   },
-  reviews: [{ type: mongoose.Types, ObjectId, ref: "Reviews" }],
-  photos: { type: mongoose.Types, ObjectId, ref: "Images" },
+  reviews: [{ type: mongoose.Types.ObjectId, ref: "Reviews" }],
+  photos: { type: mongoose.Types.ObjectId, ref: "Images" },
 },
   {
     timestamps: true,
   },
 );
 
-export const RestaurantModel = mongoose.model("Restaurants", RestaurantSchema)
+export const RestaurantModel = mongoose.model("Restaurants", RestaurantSchema);

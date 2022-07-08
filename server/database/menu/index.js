@@ -14,15 +14,15 @@ const MenuSchema = new mongoose.Schema({
     ],
     recommended: [
         {
-            type: mongoose.Type.ObjectId,
+            type: mongoose.Types.ObjectId,
             ref: "Foods",
             unique: true,
         },
     ],
 },
-    {
-        timestamps: true,
-    },
+{
+    timestamps: true,
+},
 );
 
 export const MenuModel = mongoose.model("Menu", MenuSchema);

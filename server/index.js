@@ -15,6 +15,8 @@ import ConnectDB from "./database/connection";
 // import passport
 import passport from "passport";
 
+
+
 // config
 
 import goooleAuthonfig from "./config/google.config";
@@ -22,11 +24,13 @@ import goooleAuthonfig from "./config/google.config";
 
 const zomato = express();
 
-// middlewares 
+// application middlewares 
 zomato.use(express.json());
 zomato.use(express.urlencoded({extended:false}));
 zomato.use(helmet());
 zomato.use(cors());
+zomato.use(passport.initialize());
+zomato.use(passport.session());
 
 // passport Integration
 goooleAuthonfig(passport);

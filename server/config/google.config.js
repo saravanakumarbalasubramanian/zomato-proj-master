@@ -23,16 +23,19 @@ export default (passport) => {
                     // check if the user exist
                     const user = await UserModel.findOne({ email: newUser.email });
 
-                    // generate token
-                    const token = user.generateJwtToken();
-                    if (user) {
 
+                    if (user) {
+                        // generate token
+                        const token = user.generateJwtToken();
                         // return user
                         done(null, { user, token });
                     } else {
 
                         // create new user
                         const user = await UserModel.create(newUser);
+                        // generate token
+                        const token = user.generateJwtToken();
+
                         // return user
                         done(null, { user, token });
                     }
@@ -44,6 +47,6 @@ export default (passport) => {
         )
     );
 
-    passport.serializeUser((userData, done) => done(null, {...userData}));
+    passport.serializeUser((userData, done) => done(null, { ...userData }));
     passport.deserializeUser((id, done) => done(null, id));
 };

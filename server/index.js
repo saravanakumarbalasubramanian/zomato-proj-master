@@ -9,6 +9,7 @@ import helmet from "helmet";
 // Import MicroServices Routes 
 import Auth from "./API/Auth"
 import Restaurant from "./API/Restaurant";
+import Food from "./API/Food"
 // DataBase Connection 
 import ConnectDB from "./database/connection";
 
@@ -38,7 +39,7 @@ goooleAuthConfig(passport);
 // Application Routes
 zomato.use("/auth", Auth);
 zomato.use("/restaurant", Restaurant);
-
+zomato.use("/food", Food);
 
 zomato.get("/" , (req, res) => res.json({message: "Setup Success"}));
 

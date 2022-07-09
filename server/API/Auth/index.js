@@ -3,7 +3,6 @@ import express from "express";
 import bcrypt from "bcryptjs";
 import jwt from "jsonwebtoken";
 import passport from "passport";
-import session from "express-session";
 // Models
 // we are destructuring the UserModel because we are simply exported the usermodel we are not exported by default so we have to destructure it 
 import { UserModel } from "../../database/user";
@@ -65,12 +64,12 @@ Access   Public
 Method   get
 */
 
-Router.get(
-  "/google",
-  passport.authenticate("google", {
+Router.get("/google", passport.authenticate("google",
+  {
     scope: [
       "https://www.googleapis.com/auth/userinfo.profile",
       "https://www.googleapis.com/auth/userinfo.email",
+
     ],
   })
 );

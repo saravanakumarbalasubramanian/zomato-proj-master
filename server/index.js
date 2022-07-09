@@ -1,4 +1,4 @@
-// IMporting env Variables
+// Importing env Variables
 require("dotenv").config();
 
 //Libraries

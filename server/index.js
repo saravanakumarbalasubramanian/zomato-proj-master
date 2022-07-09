@@ -19,7 +19,7 @@ import passport from "passport";
 
 // config
 
-import goooleAuthonfig from "./config/google.config";
+import goooleAuthConfig from "./config/google.config";
 
 
 const zomato = express();
@@ -33,7 +33,7 @@ zomato.use(passport.initialize());
 zomato.use(passport.session());
 
 // passport Integration
-goooleAuthonfig(passport);
+goooleAuthConfig(passport);
 
 // Application Routes
 zomato.use("/auth", Auth);

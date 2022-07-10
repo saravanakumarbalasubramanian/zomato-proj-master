@@ -7,9 +7,10 @@ import cors from "cors";
 import helmet from "helmet";
 
 // Import MicroServices Routes 
-import Auth from "./API/Auth"
+import Auth from "./API/Auth";
 import Restaurant from "./API/Restaurant";
-import Food from "./API/Food"
+import Food from "./API/Food";
+import Image from "./API/Image";
 // DataBase Connection 
 import ConnectDB from "./database/connection";
 
@@ -40,6 +41,7 @@ goooleAuthConfig(passport);
 zomato.use("/auth", Auth);
 zomato.use("/restaurant", Restaurant);
 zomato.use("/food", Food);
+zomato.use("/image", Image);
 
 zomato.get("/" , (req, res) => res.json({message: "Setup Success"}));
 

@@ -63,7 +63,7 @@ Router.get("/search", async (req, res) => {
      if(!restaurants) return res.status(404).json({error: `No Restaurant Matched With ${searchString}` });
      return res.json({restaurants});
    } catch (error) {
-     return res.status(500).json({message: error.message})   
+     return res.status(500).json({message: error.message}) ;  
    }
  });
 

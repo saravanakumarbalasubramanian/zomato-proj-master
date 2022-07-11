@@ -6,6 +6,8 @@ const ReviewSchema = mongoose.Schema({
     user: { type: mongoose.Types.ObjectId, ref: "Users" },
     rating: { type: Number, requried: true },
     reviewText: { type: String, requried: true },
+    isRestaurantReview: Boolean,
+    isFoodReview: Boolean,
     photos: [
         {
             type: mongoose.Types.ObjectId, ref: "Images"
@@ -15,7 +17,7 @@ const ReviewSchema = mongoose.Schema({
 },
     {
         timestamps: true,
-    }
+    },
 );
 
 export const ReviewModel = mongoose.model("Reviews", ReviewSchema);

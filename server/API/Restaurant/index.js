@@ -65,7 +65,7 @@ Method   GET
 Router.get("/search", async (req, res) => {
    try {
 
-     await ValidateRestaurantSearchString(req.body);
+     await ValidateRestaurantSearchString(req.body); 
 
      const {searchString} = req.body;
      const restaurants = await RestaurantModel.find({

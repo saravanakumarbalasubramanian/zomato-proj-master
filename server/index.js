@@ -25,7 +25,7 @@ import passport from "passport";
 // config
 
 import goooleAuthConfig from "./config/google.config";
-
+import routeConfig from "./config/route.config";
 
 const zomato = express();
 
@@ -39,6 +39,7 @@ zomato.use(passport.session());
 
 // passport Integration
 goooleAuthConfig(passport);
+routeConfig(passport);
 
 // Application Routes
 zomato.use("/auth", Auth);

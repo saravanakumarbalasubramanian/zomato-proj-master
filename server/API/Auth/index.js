@@ -7,6 +7,9 @@ import passport from "passport";
 // we are destructuring the UserModel because we are simply exported the usermodel we are not exported by default so we have to destructure it 
 import { UserModel } from "../../database/user";
 
+// validation
+import { ValidateSignup, ValidateSignin } from "../../validation/auth";
+
 const Router = express.Router();
 
 /*
@@ -18,7 +21,12 @@ Method   POST
 */
 
 Router.post("/signup", async (req, res) => {
+  
+
+  
   try {
+ 
+    await ValidateSignup(req.body.credentials);
 
     await UserModel.findByEmailAndPhone(req.body.credentials);
 
@@ -42,7 +50,8 @@ Method   POST
 */
 Router.post("/signin", async (req, res) => {
   try {
-
+    await ValidateSignin(req.body.credentials);
+    
     const user = await UserModel.findByEmailAndPassword(req.body.credentials);
 
 

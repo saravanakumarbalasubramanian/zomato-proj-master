@@ -2,7 +2,7 @@ import React from 'react' ;
 
 const Temp = () => {
   return (
-    <div>Hello This is a Temp Component</div>
+    <div className='px-4'>Hello This is a Temp Component</div>
   )
 }
 

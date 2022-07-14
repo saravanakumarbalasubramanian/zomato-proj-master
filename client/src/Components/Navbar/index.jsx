@@ -9,7 +9,7 @@ import { RiSearch2Line } from "react-icons/ri";
 
 const MobileNav = () => {
     return (
-        <div className='flex w-full items-center justify-between md:hidden'>
+        <div className='flex w-full items-center justify-between lg:hidden'>
             <div className="w-28">
                 <img
                     src='https://b.zmtcdn.com/web_assets/b40b97e677bc7b2ca77c58c61db266fe1603954218.png'
@@ -28,10 +28,11 @@ const MobileNav = () => {
     );
 };
 
-const MediumNav = () => {
+const LargeNav = () => {
     return (
         <>
-            <div className='hidden md:flex gap-4 w-full items-center justify-between lg:w-3/4'>
+        <div className='hidden container px-20 mx-auto  lg:flex'>
+            <div className=' hidden lg:flex gap-4 w-full items-center lg:justify-around '>
                 <div className="w-28">
                     <img
                         src='https://b.zmtcdn.com/web_assets/b40b97e677bc7b2ca77c58c61db266fe1603954218.png'
@@ -39,7 +40,7 @@ const MediumNav = () => {
                         className="w-full h-full"
                     />
                 </div>
-                <div className='w-full bg-white shadow-md p-3 border border-grey-100 rounded-md flex items-center gap-3'>
+                <div className='w-3/4 bg-white shadow-md p-3 border border-grey-100 rounded-md flex items-center gap-3'>
                     <div className='flex items-center gap-2 border-r-2 border-grey-200 pr-2'>
                         <span className='text-zomato-400'>
                             <HiLocationMarker/>
@@ -52,10 +53,11 @@ const MediumNav = () => {
                         <input type="search" placeholder='Search for restaurant, cuisine or a dish' className='w-full focus:outline-none' />
                     </div>
                 </div>
-                <div className='flex gap-3'>
-                    <button className='text-grey-400 text-xl hover:text-grey-200'>Login</button>
-                    <button className='text-grey-400 text-xl hover:text-grey-200'>Signup</button>
+                <div className='flex gap-4'>
+                    <button className='text-grey-400 text-xl hover:text-grey-600'>Login</button>
+                    <button className='text-grey-400 text-xl hover:text-grey-600'>Signup</button>
                 </div>
+            </div>
             </div>
         </>
     );
@@ -68,7 +70,7 @@ const Navbar = () => {
             <nav className='p-4 bg-white shadow-md w-full flex items-center'>
 
                 <MobileNav />
-                <MediumNav />
+                <LargeNav />
 
 
             </nav>

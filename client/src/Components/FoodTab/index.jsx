@@ -1,32 +1,61 @@
-import React from 'react';
+import React, {useEffect, useState} from 'react';
+import { useParams, Link } from 'react-router-dom';
 import {MdDeliveryDining} from "react-icons/md";
 import {IoFastFoodOutline} from "react-icons/io5";
 import {GiWineBottle, GiMedicines} from "react-icons/gi";
 
+
 const MobileTabs = () => {
+    
+   const [allTypes, setAllTypes] = useState([
+    {
+      id: `delivery`,
+      icon: <MdDeliveryDining/>,
+      name: "Delivery",
+      
+    },
+    {
+      id: `dining`,
+      icon: <IoFastFoodOutline/>,
+      name: "Dining Out",
+     
+    },
+    {
+      id: `nightlife`,
+      icon: <GiWineBottle/>,
+      name: "Night Life",
+    
+    },
+    {
+      id: `nutri`,
+      icon: <GiMedicines/>,
+      name: "Nutrition",
+    
+    },
+   ]);
+
+    const { type } = useParams();
+
     return (
         <>
          <div className='lg:hidden md:justify-evenly bg-white shadow-lg p-3 fixed bottom-0 z-10 w-full flex items-center justify-between text-grey-200 border'>
-           <div className='flex flex-col items-center text-5xl'>
-            <MdDeliveryDining/>
-            <h5 className='text-2xl'>Delivery</h5>
-           </div>
-           
-           <div className='flex flex-col items-center text-5xl'>
-            <IoFastFoodOutline/>
-            <h5 className='text-2xl'>Dining Out</h5>
-           </div>
-           
-           <div className='flex flex-col items-center text-5xl'>
-            <GiWineBottle/>
-            <h5 className='text-2xl'>Night Life</h5>
-           </div>
-           
-           <div className='flex flex-col items-center text-5xl'>
-            <GiMedicines/>
-            <h5 className='text-2xl'>Nutrition</h5>
-           </div>
-           
+ 
+                {
+                    allTypes.map((items) => (
+                       
+<Link to={`/${items.id}`}>
+                        <div 
+                        className={ 
+                            type === items.id
+                            ? "flex flex-col relative items-center text-5xl text-zomato-400  " 
+                            : "flex flex-col items-center text-5xl "}>
+                                <div className={ type === items.id && "absolute -top-3 w-full h-2 border-t-2 border-zomato-400"}/>
+                        {items.icon}
+                        <h5 className='text-2xl'>{items.name}</h5>
+                       </div>
+</Link>
+                    ))
+                }   
          </div>
         </>
     );

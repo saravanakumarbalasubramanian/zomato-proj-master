@@ -31,7 +31,7 @@ const MobileNav = () => {
 const LargeNav = () => {
     return (
         <>
-        <div className='hidden container px-20 mx-auto  lg:flex'>
+        <div className='hidden container px-20 mx-auto  lg:inline'>
             <div className=' hidden lg:flex gap-4 w-full items-center lg:justify-around '>
                 <div className="w-28">
                     <img
@@ -55,7 +55,7 @@ const LargeNav = () => {
                 </div>
                 <div className='flex gap-4'>
                     <button className='text-grey-400 text-xl hover:text-grey-600'>Login</button>
-                    <button className='text-grey-400 text-xl hover:text-grey-600'>Signup</button>
+                    <button className='text-grey-400 text-xl hover:text-grey-6 00'>Signup</button>
                 </div>
             </div>
             </div>

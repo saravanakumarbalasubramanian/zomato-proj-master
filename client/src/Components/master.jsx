@@ -10,7 +10,10 @@ const Master = () => {
 
     return (
     <>
-        {type === "delivery" && <Delivery/> }
+
+       <div className='my-5'>
+       {type === "delivery" && <Delivery/> }
+       </div>
     </>
   );
 };

@@ -1,8 +1,8 @@
 import React, {useEffect, useState} from 'react';
 import { useParams, Link } from 'react-router-dom';
-import {MdDeliveryDining} from "react-icons/md";
+import {MdDeliveryDining, MdMedication } from "react-icons/md";
 import {IoFastFoodOutline} from "react-icons/io5";
-import {GiWineBottle, GiMedicines} from "react-icons/gi";
+import {GiWineBottle} from "react-icons/gi";
 import classnames from "classnames";
 
 const MobileTabs = () => {
@@ -28,7 +28,7 @@ const MobileTabs = () => {
     },
     {
       id: `nutri`,
-      icon: <GiMedicines/>,
+      icon: <MdMedication/>,
       name: "Nutrition",
     
     },
@@ -47,11 +47,11 @@ const MobileTabs = () => {
                         <div 
                         className={ 
                             type === items.id
-                            ? "flex flex-col relative items-center text-5xl text-zomato-400  " 
-                            : "flex flex-col items-center text-5xl "}>
+                            ? "flex flex-col relative items-center text-3xl text-zomato-400  " 
+                            : "flex flex-col items-center text-3xl "}>
                                 <div className={ type === items.id && "absolute -top-3 w-full h-2 border-t-2 border-zomato-400"}/>
                         {items.icon}
-                        <h5 className='text-2xl'>{items.name}</h5>
+                        <h5 className='text-base'>{items.name}</h5>
                        </div>
 </Link>
                     ))

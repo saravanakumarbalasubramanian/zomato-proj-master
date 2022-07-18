@@ -43,4 +43,4 @@ const Brand = (props) => {
   );
 };
 
-export default Brand
+export default Brand ;

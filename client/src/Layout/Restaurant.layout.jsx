@@ -1,7 +1,7 @@
 import React from 'react';
-import { IoMdStarOutline, IoIosShareAlt } from "react-icons/io"
-import { FaDirections } from "react-icons/fa"
-import { BsFillBookmarkStarFill } from "react-icons/bs"
+import { IoMdStarOutline, IoIosShareAlt } from "react-icons/io";
+import { FaDirections } from "react-icons/fa";
+import { BsFillBookmarkStarFill } from "react-icons/bs";
 
 
 
@@ -10,6 +10,7 @@ import RestaurantNavbar from "../Components/Navbar/restaurantNavbar";
 import ImageGrid from '../Components/restaurant/ImageGrid';
 import RestaurantInfo from '../Components/restaurant/RestaurantInfo';
 import InfoButtons from '../Components/restaurant/InfoButtons';
+import TabContainer from '../Components/restaurant/Tabs';
 
 
 
@@ -64,6 +65,11 @@ const RestaurantLayout = () => {
                 </InfoButtons>
 
               </div>
+
+              <div className='my-4'>
+                <TabContainer/>
+              </div>
+              
             </div>
 
         </>

@@ -15,6 +15,3 @@ export const ValidateRestaurantSearchString = (restaurantObj) => {
 
     return Schema.validateAsync(restaurantObj);
 };
-
-
-console.log(ValidateRestaurantCity);

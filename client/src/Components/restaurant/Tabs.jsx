@@ -1,19 +1,25 @@
 import React from 'react';
 import classnames from "classnames"
-import { useLocation } from "react-router-dom";
+import { Link, useLocation, useParams } from "react-router-dom";
 
 
 
 
 const Tab = (props) => {
+
+    const {id} = useParams();
+
+
   
     return (
+        <Link to={`/restaurant/${id}/${props.route}`}>
         <>
             <div 
                className={ !props.isActive ? "text-grey-500 font-medium" : "text-zomato-400 font-semibold"} >
-                <h3>{props.title}</h3>
+                <h3 className='text-lg md:text-1xl'>{props.title}</h3>
             </div>
         </>
+            </Link>
     );
 
 
@@ -63,7 +69,7 @@ const TabContainer = (props) => {
     return (
         <>
 
-            <div className='flex items-center gap-3 md:gap-4 overflow-x-scroll'>
+            <div className='flex items-center p-4 border-b-2 gap-8 md:gap-12 overflow-x-scroll'>
                 {
                     tabs.map((tab) => (
                         <Tab { ...tab } key={`12345${tab.route}`}/>

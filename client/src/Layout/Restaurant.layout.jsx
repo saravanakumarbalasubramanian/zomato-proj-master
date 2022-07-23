@@ -14,7 +14,7 @@ import TabContainer from '../Components/restaurant/Tabs';
 
 
 
-const RestaurantLayout = () => {
+const RestaurantLayout = (props) => {
 
 
     return (
@@ -66,10 +66,10 @@ const RestaurantLayout = () => {
 
               </div>
 
-              <div className='my-4'>
+              <div className='my-8'>
                 <TabContainer/>
               </div>
-              
+              <div className='relative'>{props.children}</div>
             </div>
 
         </>

@@ -21,7 +21,7 @@ const FoodItem = (props) => {
                 <div className='w-3/4 md:w-7/12 flex flex-col gap-1 '>
                    
                     <div className='flex items-center justify-between'>
-                    <h3>{props.title}</h3>
+                    <h3 className='font-medium'>{props.title}</h3>
                     <button className='md:hidden flex items-center gap-1 text-zomato-400 bg-zomato-50 border border-zomato-400 px-2 py-1 rounded-lg '>
                          Add <BsPlus />
                     </button>

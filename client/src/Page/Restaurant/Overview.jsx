@@ -82,8 +82,12 @@ const Overview = () => {
           <div className='flex flex-wrap gap-3  my-4 '>
             <MenuCollection
               menuTitle="Menu"
-              image="https://b.zmtcdn.com/data/menus/382/50382/598077ec2bc2e6829b2c9df65e00e73e.jpg?fit=around%7C200%3A200&crop=200%3A200%3B%2A%2C%2A"
               pages="3 pages"
+              image={[
+                "https://b.zmtcdn.com/data/menus/382/50382/598077ec2bc2e6829b2c9df65e00e73e.jpg",
+                "https://im1.dineout.co.in/images/uploads/restaurant/sharpen/7/j/r/m77844-15810521375e3cf0e9a57d5.jpg?tr=tr:n-xlarge",
+                "https://img.freepik.com/free-vector/burgers-restaurant-menu-template_23-2149005028.jpg?w=2000",
+              ]}
             />
           </div>
           <h4 className='text-2xl font-semibold my-4'>Cuisines</h4>
@@ -151,11 +155,11 @@ const Overview = () => {
 
           </div>
           <div className='my-4 w-full  md:hidden flex flex-col gap-4'>
-           <Mapview
-            title="Domino's Pizza"
-            phno="+919513746301"
-            mapLocation={[12.975333063590396, 77.60497450957986]}
-            address="30, Frist Floor, Opposite Guzzlers Inn Rest House Road, MG Road, Bangalore" 
+            <Mapview
+              title="Domino's Pizza"
+              phno="+919513746301"
+              mapLocation={[12.975333063590396, 77.60497450957986]}
+              address="30, Frist Floor, Opposite Guzzlers Inn Rest House Road, MG Road, Bangalore"
             />
           </div>
           <div className='my-4 flex flex-col gap-4'>
@@ -166,16 +170,16 @@ const Overview = () => {
         </div>
 
 
-        <aside 
-        style={{ height: "fit-content" }} 
-        className='hidden md:flex md:w-4/12 sticky top-2 bg-white p-3 shadow-md rounded-md flex flex-col gap-4
+        <aside
+          style={{ height: "fit-content" }}
+          className='hidden md:flex md:w-4/12 sticky top-2 bg-white p-3 shadow-md rounded-md flex flex-col gap-4
         '>
           <Mapview
             title="Domino's Pizza"
             phno="+919513746301"
             mapLocation={[12.975333063590396, 77.60497450957986]}
-            address="30, Frist Floor, Opposite Guzzlers Inn Rest House Road, MG Road, Bangalore" 
-            />
+            address="30, Frist Floor, Opposite Guzzlers Inn Rest House Road, MG Road, Bangalore"
+          />
         </aside>
       </div>
     </>

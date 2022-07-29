@@ -166,7 +166,10 @@ const Overview = () => {
         </div>
 
 
-        <aside style={{ height: "fit-content" }} className='hidden md:flex md:w-4/12 sticky top-2 bg-white p-3 shadow-md rounded-md flex flex-col gap-4'>
+        <aside 
+        style={{ height: "fit-content" }} 
+        className='hidden md:flex md:w-4/12 sticky top-2 bg-white p-3 shadow-md rounded-md flex flex-col gap-4
+        '>
           <Mapview
             title="Domino's Pizza"
             phno="+919513746301"

@@ -16,7 +16,7 @@ const reviewCard = () => {
                             />
                         </div>
                         <div className='flex flex-col'>
-                            <h3 className='text-lg font-semibold'>Pavana Kumar</h3>
+                            <h3 className='text-lg font-semibold'>Pavan Kumar</h3>
                             <small className='text-grey-200'>5 Reviews &#8226; 5 Followers</small>
                         </div>
                     </div>
@@ -43,4 +43,4 @@ const reviewCard = () => {
     )
 }
 
-export default reviewCard;
+export default reviewCard ;

@@ -26,4 +26,4 @@ const FoodItem = (props) => {
     )
 }
 
-export default FoodItem
+export default FoodItem ;

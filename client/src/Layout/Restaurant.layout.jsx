@@ -1,8 +1,9 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
+import { useParams } from 'react-router-dom';
 import { IoMdStarOutline, IoIosShareAlt } from "react-icons/io";
 import { FaDirections } from "react-icons/fa";
 import { BsFillBookmarkStarFill } from "react-icons/bs";
-
+import {  useDispatch } from "react-redux";
 
 
 //components
@@ -14,7 +15,35 @@ import TabContainer from '../Components/restaurant/Tabs';
 import CartContainer from '../Components/Cart/CartContainer';
 
 
+// Redux Actions
+import { getSpecificRestaurant } from "../Redux/Reducer/restaurant/restaurant.action";
+import { getImage } from "../Redux/Reducer/Image/Image.action";
+
+
+
+
 const RestaurantLayout = (props) => {
+ const  [restaurant, setRestaurant] = useState({
+    images: [] ,
+    name: "",
+    cuising : "",
+    address : "",
+
+});
+ const { id } = useParams();
+ const dispatch = useDispatch();
+
+ useEffect(() => {
+    dispatch(getSpecificRestaurant(id)).then((data) => {
+     setRestaurant(prev => ({
+        ...prev, 
+        ...data.payload.restaurant,
+    }))
+
+    dispatch(getImage(data.payload.restaurant.photos)).then(data => setRestaurant(prev => ({...prev, ...data.payload.restaurant})))
+});
+ },[]);
+
 
 
     return (
@@ -25,23 +54,16 @@ const RestaurantLayout = (props) => {
 
 
                 <ImageGrid
-                    images={[
-
-                        "https://b.zmtcdn.com/data/pictures/chains/2/50382/6fa52a1c7dad34faa24f1bae4e7159de.jpg?fit=around|771.75:416.25&crop=771.75:416.25;*,*",
-                        "https://b.zmtcdn.com/data/pictures/chains/2/50382/6fa52a1c7dad34faa24f1bae4e7159de.jpg?fit=around|771.75:416.25&crop=771.75:416.25;*,*",
-                        "https://b.zmtcdn.com/data/pictures/chains/2/50382/6fa52a1c7dad34faa24f1bae4e7159de.jpg?fit=around|771.75:416.25&crop=771.75:416.25;*,*",
-                        "https://b.zmtcdn.com/data/pictures/chains/2/50382/6fa52a1c7dad34faa24f1bae4e7159de.jpg?fit=around|771.75:416.25&crop=771.75:416.25;*,*",
-                        "https://b.zmtcdn.com/data/pictures/chains/2/50382/6fa52a1c7dad34faa24f1bae4e7159de.jpg?fit=around|771.75:416.25&crop=771.75:416.25;*,*",
-
-                    ]}
+                    images={restaurant.images}
                 />
 
               <RestaurantInfo 
-              name="Domino's Pizza" 
-              restaurantRating="3.3" 
-              deliveryRating="4.0" 
-              cuisine="Pizza, Fast Food, Desserts, Beverages" 
-              address="MG Road, Bangalore"/>
+              name={restaurant?.name} 
+              restaurantRating={restaurant?.rating || 0} 
+              deliveryRating={restaurant?.rating || 0}
+              cuisine={restaurant?.cuising}
+              address={restaurant?.address}
+              />
 
               <div className='my-4 flex flex-wrap gap-3'>
 

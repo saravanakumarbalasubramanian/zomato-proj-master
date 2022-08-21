@@ -1,13 +1,29 @@
-import React from 'react'
+import React , { useEffect, useState } from 'react';
+import {useDispatch} from "react-redux";
 import { AiTwotoneStar } from "react-icons/ai";
-
+import { getImage } from '../Redux/Reducer/Image/Image.action';
+import {Link} from "react-router-dom"
 
 
 
 
 const RestaurantCard = (props) => {
+
+  const [image, setImage] = useState({
+    images: [],
+  });
+
+ const dispatch = useDispatch();
+
+ useEffect(() => {
+  props.photos && dispatch(getImage(props.photos)).then((data) => 
+           
+    setImage(data.payload.image[0]));
+ }, [props.photos]);
+
   return (
     <>
+    <Link to={`/Restaurant/${props._id}`} className="w-full">
     
        <div className='mb-4   bg-white p-4 w-full md:w-1/2 lg:w-1/3 hover:shadow-lg rounded-xl transition duration-500 ease-in-out'>
            
@@ -30,10 +46,10 @@ const RestaurantCard = (props) => {
 
                    
                  </div>
-              <span className='bg-white bg-opacity-60 p-1 rounded mr-1'>{ props.durationOfDelivery } min</span>
+              <span className='bg-white bg-opacity-60 p-1 rounded mr-1'> { props.durationOfDelivery } min</span>
              </div>
 
-              <img src={ props.photos.length && props.photos[0]}
+              <img src={image.images.length && image.images[0].location}
               alt='food'
               className='w-full h-full rounded-xl'
               />
@@ -53,6 +69,7 @@ const RestaurantCard = (props) => {
                 </div>
        </div>
 
+    </Link>
     </>
   );
 };

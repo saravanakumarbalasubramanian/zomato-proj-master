@@ -10,6 +10,60 @@ import { ValidateRestaurantId } from "../../validation/food";
 
 const Router = express.Router();
 
+
+
+/*
+Route    /new
+Des      Add New Restaurant in Database 
+Params   none
+Access   Public
+Method   POST
+*/
+Router.post("/new", passport.authenticate("jwt"), async (req, res) => {
+  try {
+    const newRetaurant = await RestaurantModel.create(req.body.retaurantData);
+    return res.json({ restaurants: newRetaurant });
+  } catch (error) {
+    return res.status(500).json({ error: error.message });
+  }
+});
+
+
+
+// @Route   PATCH /restaurants/update
+// @des     update exisitng restaurant data
+// @access  PRIVATE
+Router.patch("/update", passport.authenticate("jwt"), async (req, res) => {
+  try {
+    const updatedRestaurant = await RestaurantModel.findByIdAndUpdate(
+      req.body.retaurantData._id,
+      { $set: req.body.retaurantData },
+      { new: true }
+    );
+    if (!updatedRestaurant)
+      return res.status(404).json({ restaurants: "Restaurant Not Found!!!" });
+
+    return res.json({ restaurants: updatedRestaurant });
+  } catch (error) {
+    return res.status(500).json({ error: error.message });
+  }
+});
+
+// @Route   DELETE /restaurants/delete
+// @des     update exisitng restaurant data
+// @access  PRIVATE
+Router.delete("/delete", passport.authenticate("jwt"), async (req, res) => {
+  try {
+    const deleteRestaurant = await RestaurantModel.findByIdAndRemove(
+      req.body.retaurantData._id
+    );
+    return res.json({ restaurants: Boolean(deleteRestaurant) });
+  } catch (error) {
+    return res.status(500).json({ error: error.message });
+  }
+});
+
+
 /*
 Route    /
 Des      Get all the restaurant details based on city
@@ -45,7 +99,7 @@ Router.get("/:_id", async (req, res) => {
     await ValidateRestaurantId(req.params);
 
     const {_id} = req.params;
-    const restaurant = await RestaurantModel.findOne(_id);
+    const restaurant = await RestaurantModel.findById(_id);
     if(!restaurant) return res.status(404).json({error: "Restaurant Not Found"});
     return res.json({restaurant});
   } catch (error) {

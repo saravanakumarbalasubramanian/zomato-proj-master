@@ -6,6 +6,38 @@ import {MenuModel, ImageModel} from "../../database/allModel";
 
 const Router = express.Router();
 
+
+
+
+// @Route   POST /menu/new
+// @des     add new menu
+// @access  PUBLIC
+Router.post("/new", async (req, res) => {
+   try {
+     const { menuData } = req.body;
+ 
+     if (menuData._id) {
+       const updateMenu = await MenuModel.findByIdAndUpdate(
+         menuData._id,
+         {
+           $push: {
+             menus: { $each: menuData.menus },
+           },
+         },
+         { new: true }
+       );
+ 
+       return res.json({ menu: updateMenu });
+     }
+ 
+     const createNewMenu = await MenuModel.create(menuData);
+ 
+     return res.json({ menu: createNewMenu });
+   } catch (error) {
+     return res.status(500).json({ error: error.message });
+   }
+ });
+
 /*
 Route    /list
 Des      Get all menu based on id

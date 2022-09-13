@@ -83,6 +83,12 @@ const Overview = () => {
     console.log(newRating);
   };
 
+  const getLatLong = (mapAddress) => {
+    return mapAddress?.split(",").map((item) => parseInt(item));
+  };
+ 
+
+
   return (
     <>
 
@@ -110,10 +116,11 @@ const Overview = () => {
           </div>
           <h4 className='text-2xl font-semibold my-4'>Cuisines</h4>
           <div className='flex flex-wrap gap-5'>
-            <span className='border border-grey-500 text-cyan-600 px-3 py-1 rounded-full'>Pizza</span>
-            <span className='border border-grey-500 text-cyan-600 px-3 py-1 rounded-full'>Fast Food</span>
-            <span className='border border-grey-500 text-cyan-600 px-3 py-1 rounded-full'>Desserts</span>
-            <span className='border border-grey-500 text-cyan-600 px-3 py-1 rounded-full'>Beverages</span>
+ 
+              { reduxState?.cuisine.map((data) => (
+
+            <span className='border border-grey-500 text-cyan-600 px-3 py-1 rounded-full'>{data}</span>
+              ))}
           </div>
 
           <div className='py-5'>
@@ -123,7 +130,7 @@ const Overview = () => {
 
           <div className='my-4'>
             <h4 className='text-2xl font-semibold '>Average Cost</h4>
-            <h6>₹400 for two people (approx.)</h6>
+            <h6>₹{reduxState?.averageCost} for two people (approx.)</h6>
             <small className='text-grey-200'>Exclusive of applicable taxes and charges, if any</small>
           </div>
 
@@ -173,12 +180,12 @@ const Overview = () => {
 
           </div>
           <div className='my-4 w-full  md:hidden flex flex-col gap-4'>
-            <Mapview
-              title="Domino's Pizza"
-              phno="+919513746301"
-              mapLocation={[12.975333063590396, 77.60497450957986]}
-              address="30, Frist Floor, Opposite Guzzlers Inn Rest House Road, MG Road, Bangalore"
-            />
+          <Mapview
+            title={reduxState?.name}
+            phno={`+91${reduxState?.contactNumber}`}
+            mapLocation={getLatLong(reduxState?.mapLocation)}
+            address={reduxState?.address}
+          />
           </div>
           <div className='my-4 flex flex-col gap-4'>
             <ReviewCard />
@@ -193,10 +200,10 @@ const Overview = () => {
           className='hidden md:flex md:w-4/12 sticky top-2 bg-white p-3 shadow-md rounded-md flex flex-col gap-4
         '>
           <Mapview
-            title="Domino's Pizza"
-            phno="+919513746301"
-            mapLocation={[12.975333063590396, 77.60497450957986]}
-            address="30, Frist Floor, Opposite Guzzlers Inn Rest House Road, MG Road, Bangalore"
+            title={reduxState?.name}
+            phno={`+91${reduxState?.contactNumber}`}
+            mapLocation={getLatLong(reduxState?.mapLocation)}
+            address={reduxState?.address}
           />
         </aside>
       </div>

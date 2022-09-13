@@ -1,11 +1,10 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
+import { useDispatch, useSelector } from "react-redux";
 import { Link, useParams } from 'react-router-dom';
 import { TiChevronRight } from "react-icons/ti";
 import Slider from "react-slick";
 import ReactStars from "react-rating-stars-component";
-import { MapContainer, TileLayer, Marker, Popup } from 'react-leaflet';
-import { IoMdCopy } from "react-icons/io";
-import { FaDirections } from "react-icons/fa"
+
 
 // component
 import MenuCollection from '../../Components/restaurant/MenuCollection';
@@ -21,6 +20,8 @@ import { getReviews } from "../../Redux/Reducer/Reviews/review.action";
 
 
 const Overview = () => {
+
+  const [menuImage, setMenuImages] = useState({images: [] });
 
   const { id } = useParams();
 
@@ -61,6 +62,22 @@ const Overview = () => {
     ],
   };
 
+  const reduxState = useSelector(
+    (globalStore) => globalStore.restaurant.selectedRestaurant.restaurant
+  );
+
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+     if (reduxState) {
+      dispatch(getImage(reduxState?.menuImage)).then((data) => {
+       const images =[];
+       data.payload.image.images.map(({location}) => images.push(location));
+       setMenuImages(images);
+      });
+     }
+  }, []);
+
 
   const ratingChanged = (newRating) => {
     console.log(newRating);
@@ -88,11 +105,7 @@ const Overview = () => {
             <MenuCollection
               menuTitle="Menu"
               pages="3 pages"
-              image={[
-                "https://b.zmtcdn.com/data/menus/382/50382/598077ec2bc2e6829b2c9df65e00e73e.jpg",
-                "https://im1.dineout.co.in/images/uploads/restaurant/sharpen/7/j/r/m77844-15810521375e3cf0e9a57d5.jpg?tr=tr:n-xlarge",
-                "https://img.freepik.com/free-vector/burgers-restaurant-menu-template_23-2149005028.jpg?w=2000",
-              ]}
+              image={menuImage}
             />
           </div>
           <h4 className='text-2xl font-semibold my-4'>Cuisines</h4>

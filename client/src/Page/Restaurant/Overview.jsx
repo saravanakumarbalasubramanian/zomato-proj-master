@@ -21,7 +21,8 @@ import { getReviews } from "../../Redux/Reducer/Reviews/review.action";
 
 const Overview = () => {
 
-  const [menuImage, setMenuImages] = useState({images: [] });
+  const [menuImage, setMenuImages] = useState({ images: [] });
+  const [Reviews, setReviewss] = useState([]);
 
   const { id } = useParams();
 
@@ -69,13 +70,16 @@ const Overview = () => {
   const dispatch = useDispatch();
 
   useEffect(() => {
-     if (reduxState) {
+    if (reduxState) {
       dispatch(getImage(reduxState?.menuImage)).then((data) => {
-       const images =[];
-       data.payload.image.images.map(({location}) => images.push(location));
-       setMenuImages(images);
+        const images = [];
+        data.payload.image.images.map(({ location }) => images.push(location));
+        setMenuImages(images);
       });
-     }
+      dispatch(getReviews(reduxState?._id)).then((data) =>
+        setReviewss(data.payload.reviews)
+      );
+    }
   }, []);
 
 
@@ -86,7 +90,7 @@ const Overview = () => {
   const getLatLong = (mapAddress) => {
     return mapAddress?.split(",").map((item) => parseInt(item));
   };
- 
+
 
 
   return (
@@ -116,11 +120,11 @@ const Overview = () => {
           </div>
           <h4 className='text-2xl font-semibold my-4'>Cuisines</h4>
           <div className='flex flex-wrap gap-5'>
- 
-              { reduxState?.cuisine.map((data) => (
 
-            <span className='border border-grey-500 text-cyan-600 px-3 py-1 rounded-full'>{data}</span>
-              ))}
+            {reduxState?.cuisine.map((data) => (
+
+              <span className='border border-grey-500 text-cyan-600 px-3 py-1 rounded-full'>{data}</span>
+            ))}
           </div>
 
           <div className='py-5'>
@@ -178,14 +182,19 @@ const Overview = () => {
               activeColor="#ffd700"
             />
 
+            {Reviews.map((reviewData) => (
+
+              <ReviewCard {...reviewData} />
+            ))}
           </div>
+
           <div className='my-4 w-full  md:hidden flex flex-col gap-4'>
-          <Mapview
-            title={reduxState?.name}
-            phno={`+91${reduxState?.contactNumber}`}
-            mapLocation={getLatLong(reduxState?.mapLocation)}
-            address={reduxState?.address}
-          />
+            <Mapview
+              title={reduxState?.name}
+              phno={`+91${reduxState?.contactNumber}`}
+              mapLocation={getLatLong(reduxState?.mapLocation)}
+              address={reduxState?.address}
+            />
           </div>
           <div className='my-4 flex flex-col gap-4'>
             <ReviewCard />

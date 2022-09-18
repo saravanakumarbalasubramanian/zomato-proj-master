@@ -1,7 +1,22 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { TiStar } from "react-icons/ti";
 
-const reviewCard = () => {
+import { useDispatch } from "react-redux";
+import { getUser } from '../../../Redux/Reducer/User/user.action';
+import dayjs from "dayjs";
+
+
+const reviewCard = (props) => {
+    
+     const [user, setUser] = useState({});
+
+     const dispatch = useDispatch();
+
+     useEffect(() => {
+         dispatch(getUser(props.user)).then((data) => setUser(data.payload.user.user.user));
+     }, []);
+
+    
     return (
         <>
 
@@ -16,7 +31,7 @@ const reviewCard = () => {
                             />
                         </div>
                         <div className='flex flex-col'>
-                            <h3 className='text-lg font-semibold'>Pavan Kumar</h3>
+                            <h3 className='text-lg font-semibold'>{user?.fullname}</h3>
                             <small className='text-grey-200'>5 Reviews &#8226; 5 Followers</small>
                         </div>
                     </div>
@@ -25,15 +40,14 @@ const reviewCard = () => {
                 <div className='flex flex-col gap-3'>
                     <div className='flex items-center gap-3'>
                         <span className='flex items-center text-xs text-white bg-green-700 px-2 py-1 rounded-lg'> 5 <TiStar /> </span>
-                        <h5 className='font-regular uppercase'>Delivery</h5>
-                        <small className='text-grey-400'>3 days ago</small>
+                        <h5 className='font-regular uppercase'>{props.isRestaurantReview? "Dining" : "Delivery"}</h5>
+                        <small className='text-grey-400'>
+                            {dayjs(props.createdAt).format("DD MM YYYY")}
+                        </small>
                     </div>
                     <div className='w-full'>
                         <p className='w-full text-grey-600 font-light text-base'>
-                            Restaurants in Bangalore, Bangalore Restaurants, MG Road restaurants, Best MG Road restaurants,
-                            Central Bangalore restaurants, Quick Bites in Bengaluru, Quick Bites near me, Quick Bites in Central Bangalore, Quick Bites in MG Road,
-                            in Bengaluru, near me, in Central Bangalore, in MG Road, in Bengaluru, near me, in Central Bangalore, in MG Road, Domino's Pizza Menu,
-                            Order food online in MG Road, Order food online in Bengaluru, Order food online in Central Bangalore, New Year Parties in Bengaluru, Christmas' Special in Bengaluru
+                           {props.reviewText}
                         </p>
                     </div>
                 </div>

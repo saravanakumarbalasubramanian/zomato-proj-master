@@ -1,4 +1,6 @@
-import { GET_USER, AUTH_USER } from "./Image.type";
+import { GET_USER, AUTH_USER } from "./user.type";
+
+
 
 
 

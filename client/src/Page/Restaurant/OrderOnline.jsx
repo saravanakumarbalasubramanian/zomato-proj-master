@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useEffect, useState} from 'react';
 import { GiCompass } from "react-icons/gi"
 import { BsClockHistory } from "react-icons/bs"
 
@@ -8,7 +8,16 @@ import MenuListcontainer from '../../Components/restaurant/Order-Onine/MenuListc
 import FoodItem from '../../Components/restaurant/Order-Onine/FoodItem';
 import FoodList from '../../Components/restaurant/Order-Onine/FoodList';
 
+
+// redux actions 
+import { getFoodList } from '../../Redux/Reducer/Food/Food.action';
+
+
+
 const OrderOnline = () => {
+
+  const [] = useState();
+
   return (
     <>
       <div className='w-full flex  h-screen '>
